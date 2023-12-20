@@ -27324,38 +27324,35 @@ const MainView = ()=>{
             id: 1,
             name: "Elizabeth Maconchy",
             era: "Modern",
-            img: "https://sitecoreaudioprod.umusicpub.com/sitecore_media/A8C04474-739B-4FC2-BBAD-504DBE84D23E.jpeg",
-            bio: "Elizabeth Maconchy was an Irish/English composer born in 1907 in Broxbourne, England. Her family soon moved to Ireland, where she studied music in Dublin. At age sixteen, she studied at the Royal College of Music in London under Ralph Vaughan Williams and Charles Wood. After the RCM, she continued her musical studies in Prague. Besides composing, Maconchy worked throughout her life to improve the lives of composers. She organised concerts in London in response to a lack of opportunities for female composers, and was also the Chair of the Composers Guild of Great Britain for many years (the first woman to hold that position), and President of the Society for the Promotion of New Music. She is considered to be one of the greatest composers of the British Isles. "
+            img: "https://sitecoreaudioprod.umusicpub.com/sitecore_media/A8C04474-739B-4FC2-BBAD-504DBE84D23E.jpeg"
         },
         {
             id: 2,
             name: "Fanny Mendelssohn",
             era: "Romantic",
-            img: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Fanny_Hensel_1842.jpg",
-            bio: "Fanny Mendelssohn (Fanny Hensel after marriage) was an early romantic German composer and pianist. She was overshadowed both in life and in history by her famous brother Felix Mendelssohn, and published many works under his name. She and Felix both studied with the same piano instructor, who gave her the \u2018high praise\u2019 \u201Cshe plays like a man\u201D, and composition instructor, who favoured Fanny\u2019s composition skills over Felix\u2019s. Both her father and brother seem to have been tolerant but disapproving of her composition, as they didn\u2019t think it was a fitting activity for a woman. However, Felix often wrote to his sister to ask for advice on his compositions, and later Fanny\u2019s husband was supportive of her publishing her works. In her life Fanny composed over 450 works, mostly piano pieces and lieder. "
+            img: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Fanny_Hensel_1842.jpg"
         },
         {
             id: 3,
             name: "Hildegard von Bingen",
             era: "Medieval",
-            img: "http://t0.gstatic.com/images?q=tbn:ANd9GcRliY0OKc-NCtnGyZY3EXO6WVdNhdohGb_cFT_l5O70iAD_x8VpHJGYrQE8Z4NDpy7-McfzgQ",
-            bio: "Hildegard von Bingen was a German abbess in the 11th and 12th centuries known not only for her sacred music, but for being a writer, philosopher, mystic, and the founder of scientific natural history in Germany and two monasteries. She wrote both the music and the lyrics of her compositions, and more of her chants survive than those of any other composer of the middle ages. Hildegard experienced religious visions starting from a young age, gained followers, and has been listed as a Saint. Seventy of her compositions, including a morality play called \u2018Ordo Virtutum\u2019, currently survive."
+            img: "http://t0.gstatic.com/images?q=tbn:ANd9GcRliY0OKc-NCtnGyZY3EXO6WVdNhdohGb_cFT_l5O70iAD_x8VpHJGYrQE8Z4NDpy7-McfzgQ"
         }
     ]);
     const [selectedComposer, setSelectedComposer] = (0, _react.useState)(null);
     if (selectedComposer) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _composerView.ComposerView), {
         composer: selectedComposer,
-        onBackClick: ()=>setSelectedComposer(null)
+        onBackClick: ()=>selectedComposer(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 35,
+        lineNumber: 32,
         columnNumber: 7
     }, undefined);
     if (composers.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 43,
+        lineNumber: 40,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27367,17 +27364,17 @@ const MainView = ()=>{
                 }
             }, composer.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 50,
+                lineNumber: 47,
                 columnNumber: 11
             }, undefined);
         })
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 47,
+        lineNumber: 44,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "ZRZMZJb+1UP86m8RfQJf/FCpaUw=");
+_s(MainView, "6Xozqy70oUmIL1qsCJIZcADAI6g=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27465,7 +27462,7 @@ const ComposerView = ({ composer, onBackClick })=>{
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                    src: composer.img
+                    src: composer.image
                 }, void 0, false, {
                     fileName: "src/components/composer-view/composer-view.jsx",
                     lineNumber: 5,
@@ -27520,34 +27517,12 @@ const ComposerView = ({ composer, onBackClick })=>{
                 lineNumber: 11,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Bio: "
-                    }, void 0, false, {
-                        fileName: "src/components/composer-view/composer-view.jsx",
-                        lineNumber: 16,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: composer.bio
-                    }, void 0, false, {
-                        fileName: "src/components/composer-view/composer-view.jsx",
-                        lineNumber: 17,
-                        columnNumber: 9
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/composer-view/composer-view.jsx",
-                lineNumber: 15,
-                columnNumber: 7
-            }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 onClick: onBackClick,
                 children: "Back"
             }, void 0, false, {
                 fileName: "src/components/composer-view/composer-view.jsx",
-                lineNumber: 19,
+                lineNumber: 15,
                 columnNumber: 7
             }, undefined)
         ]
@@ -27568,4 +27543,4 @@ $RefreshReg$(_c, "ComposerView");
 }
 },{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"cxgFp","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"lFMIS"}]},["kJE2x","i5Reh","d8Dch"], "d8Dch", "parcelRequire9661")
 
-//# sourceMappingURL=index.b4b6dfad.js.map
+//# sourceMappingURL=index.js.map
