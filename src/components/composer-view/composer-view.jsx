@@ -9,8 +9,12 @@ export const ComposerView = ({ composer, onBackClick }) => {
         <span>{composer.name}</span>
       </div>
       <div>
-        <span>Era: </span>
-        <span>{composer.era}</span>
+        <span>Lifespan: </span>
+        <span>{composer.lifespan}</span>
+      </div>
+      <div>
+        <span>Nationality: </span>
+        <span>{composer.nationality}</span>
       </div>
       <div>
         <span>Bio: </span>
