@@ -1,26 +1,37 @@
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+
 export const ComposerView = ({ composer, onBackClick }) => {
   return (
-    <div>
+    <Col md={6} style={{ fontSize: "20px" }}>
       <div>
-        <img src={composer.img} />
+        <img src={composer.img} style={{ width: "100%" }} />
       </div>
-      <div>
-        <span>Name: </span>
+      <div style={{ paddingTop: "15px" }}>
+        <span
+          style={{
+            fontWeight: "bold",
+          }}
+        >
+          Name:{" "}
+        </span>
         <span>{composer.name}</span>
       </div>
-      <div>
-        <span>Lifespan: </span>
+      <div style={{ paddingTop: "15px" }}>
+        <span style={{ fontWeight: "bold" }}>Lifespan: </span>
         <span>{composer.lifespan}</span>
       </div>
-      <div>
-        <span>Nationality: </span>
+      <div style={{ paddingTop: "15px" }}>
+        <span style={{ fontWeight: "bold" }}>Nationality: </span>
         <span>{composer.nationality}</span>
       </div>
-      <div>
-        <span>Bio: </span>
+      <div style={{ paddingTop: "15px" }}>
+        <span style={{ fontWeight: "bold" }}>Bio: </span>
         <span>{composer.bio}</span>
       </div>
-      <button onClick={onBackClick}>Back</button>
-    </div>
+      <Button style={{ marginTop: "15px" }} onClick={onBackClick}>
+        Back
+      </Button>
+    </Col>
   );
 };
