@@ -1,16 +1,24 @@
 import PropTypes from "prop-types";
-import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
 
 export const ComposerCard = ({ composer, onComposerClick }) => {
   return (
-    <div
-      style={{ textAlign: "center", fontSize: "20px", cursor: "pointer" }}
+    <Card
+      style={{
+        textAlign: "center",
+        fontSize: "20px",
+        cursor: "pointer",
+        margin: "25px",
+      }}
       onClick={() => {
         onComposerClick(composer);
       }}
     >
-      <span style={{ fontWeight: "bold" }}>{composer.name}</span>
-    </div>
+      <Card.Img src={composer.img} />
+      <Card.Body>
+        <Card.Title>{composer.name}</Card.Title>
+      </Card.Body>
+    </Card>
   );
 };
 
