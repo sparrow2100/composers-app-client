@@ -1,14 +1,24 @@
 import PropTypes from "prop-types";
+import Card from "react-bootstrap/Card";
 
 export const ComposerCard = ({ composer, onComposerClick }) => {
   return (
-    <div
+    <Card
+      style={{
+        textAlign: "center",
+        fontSize: "20px",
+        cursor: "pointer",
+        margin: "25px",
+      }}
       onClick={() => {
         onComposerClick(composer);
       }}
     >
-      {composer.name}
-    </div>
+      <Card.Img src={composer.img} />
+      <Card.Body>
+        <Card.Title>{composer.name}</Card.Title>
+      </Card.Body>
+    </Card>
   );
 };
 
@@ -19,7 +29,7 @@ ComposerCard.propTypes = {
       lifespan: PropTypes.string.isRequired,
       bio: PropTypes.string.isRequired,
       nationality: PropTypes.string.isRequired,
-    }).isRequired,
+    }),
     img: PropTypes.string,
   }).isRequired,
 };

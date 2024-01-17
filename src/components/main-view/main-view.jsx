@@ -5,6 +5,10 @@ import { ComposerView } from "../composer-view/composer-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
@@ -35,55 +39,59 @@ export const MainView = () => {
       });
   }, [token]);
 
-  if (!user) {
-    return (
-      <div>
-        <LoginView
-          onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-          }}
-        />
-        <h2>Or</h2>
-        <SignupView />
-      </div>
-    );
-  }
-
-  if (selectedComposer) {
-    return (
-      <ComposerView
-        composer={selectedComposer}
-        onBackClick={() => setSelectedComposer(null)}
-      />
-    );
-  }
-
-  if (composers.length === 0) {
-    return <div>The list is empty!</div>;
-  }
-
   return (
-    <div>
-      {composers.map((composer) => {
-        return (
-          <ComposerCard
-            key={composer.id}
-            composer={composer}
-            onComposerClick={(newSelectedComposer) => {
-              setSelectedComposer(newSelectedComposer);
-            }}
+    <Row className="justify-content-md-center">
+      {!user ? (
+        <>
+          <Col md={5}>
+            <LoginView
+              onLoggedIn={(user, token) => {
+                setUser(user);
+                setToken(token);
+              }}
+            />
+          </Col>
+
+          <Col md={5}>
+            <SignupView />
+          </Col>
+        </>
+      ) : selectedComposer ? (
+        <>
+          <ComposerView
+            composer={selectedComposer}
+            onBackClick={() => setSelectedComposer(null)}
           />
-        );
-      })}
-      <button
-        onClick={() => {
-          setUser(null);
-          setToken(null);
-        }}
-      >
-        Logout
-      </button>
-    </div>
+        </>
+      ) : composers.length === 0 ? (
+        <div>The list is empty!</div>
+      ) : (
+        <>
+          {composers.map((composer) => {
+            return (
+              <Col key={composer.id} md={4}>
+                <ComposerCard
+                  composer={composer}
+                  onComposerClick={(newSelectedComposer) => {
+                    setSelectedComposer(newSelectedComposer);
+                  }}
+                />
+              </Col>
+            );
+          })}
+          <Col md={12} style={{ textAlign: "center" }}>
+            <Button
+              style={{ marginTop: "50px" }}
+              onClick={() => {
+                setUser(null);
+                setToken(null);
+              }}
+            >
+              Logout
+            </Button>
+          </Col>
+        </>
+      )}
+    </Row>
   );
 };
