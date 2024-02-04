@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 export const ComposerCard = ({ composer, onComposerClick }) => {
   return (
@@ -14,10 +15,12 @@ export const ComposerCard = ({ composer, onComposerClick }) => {
         onComposerClick(composer);
       }}
     >
-      <Card.Img src={composer.img} />
-      <Card.Body>
-        <Card.Title>{composer.name}</Card.Title>
-      </Card.Body>
+      <Link to={`/composers/${encodeURIComponent(composer.name)}`}>
+        <Card.Img src={composer.img} />
+        <Card.Body>
+          <Card.Title>{composer.name}</Card.Title>
+        </Card.Body>
+      </Link>
     </Card>
   );
 };

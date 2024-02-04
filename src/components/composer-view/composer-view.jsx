@@ -1,5 +1,6 @@
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+
+import { Link } from "react-router-dom";
 
 export const ComposerView = ({ composer, onBackClick }) => {
   return (
@@ -29,9 +30,9 @@ export const ComposerView = ({ composer, onBackClick }) => {
         <span style={{ fontWeight: "bold" }}>Bio: </span>
         <span>{composer.bio}</span>
       </div>
-      <Button style={{ marginTop: "15px" }} onClick={onBackClick}>
+      <Link to="/" style={{ marginTop: "15px" }}>
         Back
-      </Button>
+      </Link>
     </Col>
   );
 };

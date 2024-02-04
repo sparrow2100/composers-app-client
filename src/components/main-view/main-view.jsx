@@ -4,6 +4,9 @@ import { ComposerCard } from "../composer-card/composer-card";
 import { ComposerView } from "../composer-view/composer-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { NavigationBar } from "../navigation-bar/navigation-bar";
+
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -40,58 +43,102 @@ export const MainView = () => {
   }, [token]);
 
   return (
-    <Row className="justify-content-md-center">
-      {!user ? (
-        <>
-          <Col md={5}>
-            <LoginView
-              onLoggedIn={(user, token) => {
-                setUser(user);
-                setToken(token);
-              }}
-            />
-          </Col>
-
-          <Col md={5}>
-            <SignupView />
-          </Col>
-        </>
-      ) : selectedComposer ? (
-        <>
-          <ComposerView
-            composer={selectedComposer}
-            onBackClick={() => setSelectedComposer(null)}
+    <BrowserRouter>
+      <NavigationBar user={user} onLoggedOut={() => setUser(null)} />
+      <Row className="justify-content-md-center">
+        <Routes>
+          <Route
+            path="/signup"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <SignupView />
+                  </Col>
+                )}
+              </>
+            }
           />
-        </>
-      ) : composers.length === 0 ? (
-        <div>The list is empty!</div>
-      ) : (
-        <>
-          {composers.map((composer) => {
-            return (
-              <Col key={composer.id} md={4}>
-                <ComposerCard
-                  composer={composer}
-                  onComposerClick={(newSelectedComposer) => {
-                    setSelectedComposer(newSelectedComposer);
-                  }}
-                />
-              </Col>
-            );
-          })}
-          <Col md={12} style={{ textAlign: "center" }}>
-            <Button
-              style={{ marginTop: "50px" }}
-              onClick={() => {
-                setUser(null);
-                setToken(null);
-              }}
-            >
-              Logout
-            </Button>
-          </Col>
-        </>
-      )}
-    </Row>
+          <Route
+            path="/login"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/composers/:composerName"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : composers.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : !selectedComposer ? (
+                  <Col>No composer has been selected</Col>
+                ) : (
+                  <>
+                    <ComposerView
+                      composer={selectedComposer}
+                      onBackClick={() => setSelectedComposer(null)}
+                    />
+                  </>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" />
+                ) : (
+                  <>
+                    {composers.map((composer) => {
+                      return (
+                        <Col key={composer.id} md={4}>
+                          <ComposerCard
+                            composer={composer}
+                            onComposerClick={(newSelectedComposer) => {
+                              setSelectedComposer(newSelectedComposer);
+                            }}
+                          />
+                        </Col>
+                      );
+                    })}
+                    <Col md={12} style={{ textAlign: "center" }}>
+                      <Button
+                        style={{ marginTop: "50px" }}
+                        onClick={() => {
+                          setUser(null);
+                          setToken(null);
+                        }}
+                      >
+                        Logout
+                      </Button>
+                    </Col>
+                  </>
+                )}
+              </>
+            }
+          />
+        </Routes>
+      </Row>
+    </BrowserRouter>
   );
 };
