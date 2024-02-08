@@ -5,6 +5,7 @@ import { ComposerView } from "../composer-view/composer-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { ProfileView } from "../profile-view/profile-view";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -15,10 +16,13 @@ import Button from "react-bootstrap/Button";
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
-  const [composers, setComposers] = useState([]);
+
   const [selectedComposer, setSelectedComposer] = useState(null);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+
+  // from the API response
+  const [composers, setComposers] = useState([]);
 
   useEffect(() => {
     if (!token) {
@@ -36,6 +40,7 @@ export const MainView = () => {
             lifespan: composer.life.lifespan,
             bio: composer.life.bio,
             nationality: composer.life.nationality,
+            id: composer._id,
           };
         });
         setComposers(composersFromApi);
@@ -94,6 +99,8 @@ export const MainView = () => {
                   <>
                     <ComposerView
                       composer={selectedComposer}
+                      user={user}
+                      token={token}
                       onBackClick={() => setSelectedComposer(null)}
                     />
                   </>
@@ -135,6 +142,22 @@ export const MainView = () => {
                   </>
                 )}
               </>
+            }
+          />
+          <Route
+            path="/user"
+            element={
+              !user ? (
+                <Navigate to="/login" />
+              ) : (
+                <>
+                  <ProfileView
+                    user={user}
+                    token={token}
+                    composers={composers}
+                  />
+                </>
+              )
             }
           />
         </Routes>

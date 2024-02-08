@@ -15,10 +15,15 @@ export const ComposerCard = ({ composer, onComposerClick }) => {
         onComposerClick(composer);
       }}
     >
-      <Link to={`/composers/${encodeURIComponent(composer.name)}`}>
+      <Link
+        to={`/composers/${encodeURIComponent(composer.name)}`}
+        style={{ textDecoration: "none" }}
+      >
         <Card.Img src={composer.img} />
         <Card.Body>
-          <Card.Title>{composer.name}</Card.Title>
+          <Card.Title style={{ color: "black", textDecoration: "none" }}>
+            {composer.name}
+          </Card.Title>
         </Card.Body>
       </Link>
     </Card>

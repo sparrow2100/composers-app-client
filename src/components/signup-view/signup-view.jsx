@@ -53,7 +53,7 @@ export const SignupView = () => {
             type="text"
             value={username}
             onChange={(event) => {
-              setUsetname(event.target.value);
+              setUsername(event.target.value);
             }}
             required
           />
