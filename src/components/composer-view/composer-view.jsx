@@ -2,7 +2,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
-export const ComposerView = ({ user, token, composer, onBackClick }) => {
+export const ComposerView = ({ user, token, composer, setUser }) => {
   const favouritesArray = user.favouriteComposers;
   //add composer to your favourites
   const makeFavourite = () => {
@@ -17,6 +17,9 @@ export const ComposerView = ({ user, token, composer, onBackClick }) => {
     ).then(async (response) => {
       if (response.ok) {
         alert("added successfully");
+        // update the user object with the new favourite composer
+        const newFavourites = await response.json();
+        setUser(newFavourites);
       } else {
         alert("update failed");
         console.log("something went wrong", await response.text());
@@ -38,6 +41,9 @@ export const ComposerView = ({ user, token, composer, onBackClick }) => {
       ).then(async (response) => {
         if (response.ok) {
           alert("removed successfully");
+          // update the user object with the removed favourite composer
+          const newRemoved = await response.json();
+          setUser(newRemoved);
         } else {
           alert("removal failed");
           console.log("something went wrong", await response.text());

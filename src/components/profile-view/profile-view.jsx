@@ -2,8 +2,9 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
+import { useEffect } from "react";
 
-export const ProfileView = ({ user, token, composers }) => {
+export const ProfileView = ({ user, token, composers, setUser }) => {
   //store the updated values
   const [name, setName] = useState(user.name);
   const [username, setUsername] = useState(user.username);
@@ -11,17 +12,23 @@ export const ProfileView = ({ user, token, composers }) => {
   const [email, setEmail] = useState(user.email);
   const [birthday, setBirthday] = useState(user.birthday);
 
-  //track if the user has entered a new password
+  //track if the user has entered new information
   const [newPassword, setNewPassword] = useState(false);
 
   const favourites = composers.filter((c) =>
     user.favouriteComposers.includes(c.id)
   );
 
+  useEffect(() => {
+    setName(user.name);
+    setUsername(user.username);
+    setEmail(user.email);
+    setBirthday(user.birthday);
+  }, [user]);
+
   //send updated user info upon submitting the form
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert("submitted!");
 
     const data = {
       name: name,
@@ -40,7 +47,9 @@ export const ProfileView = ({ user, token, composers }) => {
       },
     }).then(async (response) => {
       if (response.ok) {
-        alert("update successful");
+        const newUserData = await response.json();
+        console.log(newUserData);
+        setUser(newUserData);
       } else {
         alert("update failed");
         console.log("something went wrong", await response.text());
@@ -70,7 +79,7 @@ export const ProfileView = ({ user, token, composers }) => {
     <>
       {/* display current user info */}
       <Col md={6} style={{ marginTop: "50px" }}>
-        <h2 style={{ marginTop: "10px", marginBottom: "30px" }}>{user.name}</h2>
+        <h1 style={{ marginTop: "10px", marginBottom: "30px" }}>{user.name}</h1>
         <h2>Username:</h2>
         <p>{user.username}</p>
         <h2>Email:</h2>
@@ -89,14 +98,16 @@ export const ProfileView = ({ user, token, composers }) => {
       </Col>
       {/* Form for updating user info */}
       <Col style={{ marginTop: "50px" }}>
-        <h1 style={{ marginTop: "10px", marginBottom: "30px" }}>Update Info</h1>
+        <h2 style={{ marginTop: "10px", marginBottom: "30px" }}>Update Info</h2>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formName">
             <Form.Label>Name:</Form.Label>
             <Form.Control
               type="text"
               defaultValue={user.name}
-              onChange={(event) => setName(event.target.value)}
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
             />
           </Form.Group>
           <Form.Group controlId="formUsername">
@@ -104,7 +115,9 @@ export const ProfileView = ({ user, token, composers }) => {
             <Form.Control
               type="text"
               defaultValue={user.username}
-              onChange={(event) => setUsername(event.target.value)}
+              onChange={(event) => {
+                setUsername(event.target.value);
+              }}
             />
           </Form.Group>
           <Form.Group controlId="formPassword">

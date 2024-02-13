@@ -18,8 +18,8 @@ export const MainView = () => {
   const storedToken = localStorage.getItem("token");
 
   const [selectedComposer, setSelectedComposer] = useState(null);
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
 
   // from the API response
   const [composers, setComposers] = useState([]);
@@ -101,7 +101,7 @@ export const MainView = () => {
                       composer={selectedComposer}
                       user={user}
                       token={token}
-                      onBackClick={() => setSelectedComposer(null)}
+                      setUser={setUser}
                     />
                   </>
                 )}
@@ -153,6 +153,7 @@ export const MainView = () => {
                 <>
                   <ProfileView
                     user={user}
+                    setUser={setUser}
                     token={token}
                     composers={composers}
                   />
