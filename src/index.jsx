@@ -11,7 +11,10 @@ const ComposerApp = () => {
       style={{
         background: "#E6E6FA",
         borderRadius: "15px",
-        padding: "50px",
+        paddingLeft: "50px",
+        paddingRight: "50px",
+        paddingBottom: "50px",
+        paddingTop: "25px",
         marginTop: "50px",
       }}
     >
