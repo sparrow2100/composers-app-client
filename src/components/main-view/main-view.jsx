@@ -21,6 +21,9 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
+  // passed into the navigation component to get the value from the search input
+  const [search, setSearch] = useState("");
+
   // from the API response
   const [composers, setComposers] = useState([]);
 
@@ -49,7 +52,11 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar user={user} onLoggedOut={() => setUser(null)} />
+      <NavigationBar
+        user={user}
+        setSearch={setSearch}
+        onLoggedOut={() => setUser(null)}
+      />
       <Row className="justify-content-md-center">
         <Routes>
           <Route
@@ -116,18 +123,26 @@ export const MainView = () => {
                   <Navigate to="/login" />
                 ) : (
                   <>
-                    {composers.map((composer) => {
-                      return (
-                        <Col key={composer.id} md={4}>
-                          <ComposerCard
-                            composer={composer}
-                            onComposerClick={(newSelectedComposer) => {
-                              setSelectedComposer(newSelectedComposer);
-                            }}
-                          />
-                        </Col>
-                      );
-                    })}
+                    {composers
+                      .filter((composer) => {
+                        return search.toLowerCase() === ""
+                          ? composer
+                          : composer.name
+                              .toLowerCase()
+                              .includes(search.toLowerCase());
+                      })
+                      .map((composer) => {
+                        return (
+                          <Col key={composer.id} md={4}>
+                            <ComposerCard
+                              composer={composer}
+                              onComposerClick={(newSelectedComposer) => {
+                                setSelectedComposer(newSelectedComposer);
+                              }}
+                            />
+                          </Col>
+                        );
+                      })}
                     <Col md={12} style={{ textAlign: "center" }}>
                       <Button
                         style={{ marginTop: "50px" }}

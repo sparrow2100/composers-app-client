@@ -10,6 +10,7 @@ export const ComposerCard = ({ composer, onComposerClick }) => {
         fontSize: "20px",
         cursor: "pointer",
         margin: "25px",
+        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
       }}
       onClick={() => {
         onComposerClick(composer);
@@ -19,7 +20,13 @@ export const ComposerCard = ({ composer, onComposerClick }) => {
         to={`/composers/${encodeURIComponent(composer.name)}`}
         style={{ textDecoration: "none" }}
       >
-        <Card.Img src={composer.img} />
+        <Card.Img
+          src={composer.img}
+          style={{
+            borderBottomLeftRadius: "0px",
+            borderBottomRightRadius: "0px",
+          }}
+        />
         <Card.Body>
           <Card.Title style={{ color: "black", textDecoration: "none" }}>
             {composer.name}

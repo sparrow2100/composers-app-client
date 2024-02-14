@@ -92,9 +92,6 @@ export const ProfileView = ({ user, token, composers, setUser }) => {
             <li>{favourite.name}</li>
           ))}
         </ul>
-        <Button variant="danger" onClick={deleteUser}>
-          Delete Account
-        </Button>
       </Col>
       {/* Form for updating user info */}
       <Col style={{ marginTop: "50px" }}>
@@ -156,6 +153,13 @@ export const ProfileView = ({ user, token, composers, setUser }) => {
             Submit
           </Button>
         </Form>
+        <Button
+          variant="danger"
+          onClick={deleteUser}
+          style={{ marginTop: "20px" }}
+        >
+          Delete Account
+        </Button>
       </Col>
     </>
   );
