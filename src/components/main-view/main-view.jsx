@@ -55,7 +55,9 @@ export const MainView = () => {
       <NavigationBar
         user={user}
         setSearch={setSearch}
-        onLoggedOut={() => setUser(null)}
+        onLoggedOut={() => {
+          setUser(null), localStorage.clear();
+        }}
       />
       <Row className="justify-content-md-center">
         <Routes>
