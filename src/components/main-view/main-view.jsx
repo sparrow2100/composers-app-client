@@ -31,9 +31,12 @@ export const MainView = () => {
     if (!token) {
       return;
     }
-    fetch("http://ec2-54-205-245-154.compute-1.amazonaws.com/composers", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    fetch(
+      "http://careerfoundryloadbalancer-1539903482.us-east-1.elb.amazonaws.com/composers",
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
       .then((response) => response.json())
       .then((composers) => {
         const composersFromApi = composers.map((composer) => {

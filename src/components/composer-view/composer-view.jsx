@@ -9,7 +9,7 @@ export const ComposerView = ({ user, token, composer, setUser }) => {
   //add composer to your favourites
   const makeFavourite = () => {
     fetch(
-      `http://ec2-54-205-245-154.compute-1.amazonaws.com/users/${user.username}/favouriteComposers/${composer.id}`,
+      `http://careerfoundryloadbalancer-1539903482.us-east-1.elb.amazonaws.com/users/${user.username}/favouriteComposers/${composer.id}`,
       {
         method: "POST",
         headers: {
@@ -32,7 +32,7 @@ export const ComposerView = ({ user, token, composer, setUser }) => {
   const removeFavourite = () => {
     if (favouritesArray.includes(composer.id)) {
       fetch(
-        `http://ec2-54-205-245-154.compute-1.amazonaws.com/users/${user.username}/favouriteComposers/${composer.id}`,
+        `http://careerfoundryloadbalancer-1539903482.us-east-1.elb.amazonaws.com/users/${user.username}/favouriteComposers/${composer.id}`,
         {
           method: "DELETE",
           headers: {

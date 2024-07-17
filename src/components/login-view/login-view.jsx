@@ -12,13 +12,16 @@ export const LoginView = ({ onLoggedIn }) => {
       username: username,
       password: password,
     };
-    fetch("http://ec2-54-205-245-154.compute-1.amazonaws.com/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      "http://careerfoundryloadbalancer-1539903482.us-east-1.elb.amazonaws.com/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("login response: ", data);

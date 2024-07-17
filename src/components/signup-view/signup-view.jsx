@@ -18,13 +18,16 @@ export const SignupView = () => {
       email: email,
       birthday: birthday,
     };
-    fetch("http://ec2-54-205-245-154.compute-1.amazonaws.com/users", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => {
+    fetch(
+      "http://careerfoundryloadbalancer-1539903482.us-east-1.elb.amazonaws.com/users",
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((response) => {
       if (response.ok) {
         alert("signup successful");
         window.location.reload();
