@@ -31,7 +31,7 @@ export const MainView = () => {
     if (!token) {
       return;
     }
-    fetch("https://women-composers-api.onrender.com/composers", {
+    fetch("http://ec2-54-205-245-154.compute-1.amazonaws.com/composers", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())

@@ -38,14 +38,17 @@ export const ProfileView = ({ user, token, composers, setUser }) => {
       birthday: birthday,
     };
 
-    fetch(`https://women-composers-api.onrender.com/users/${user.username}`, {
-      method: "PUT",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    }).then(async (response) => {
+    fetch(
+      `http://ec2-54-205-245-154.compute-1.amazonaws.com/users/${user.username}`,
+      {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    ).then(async (response) => {
       if (response.ok) {
         const newUserData = await response.json();
         console.log(newUserData);
@@ -60,12 +63,15 @@ export const ProfileView = ({ user, token, composers, setUser }) => {
   // Delete the user's account
   const deleteUser = () => {
     alert("click registered");
-    fetch(`https://women-composers-api.onrender.com/users/${user.username}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then(async (response) => {
+    fetch(
+      `http://ec2-54-205-245-154.compute-1.amazonaws.com/users/${user.username}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    ).then(async (response) => {
       if (response.ok) {
         alert("account deleted");
       } else {

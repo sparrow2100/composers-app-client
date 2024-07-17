@@ -12,7 +12,7 @@ export const LoginView = ({ onLoggedIn }) => {
       username: username,
       password: password,
     };
-    fetch("https://women-composers-api.onrender.com/login", {
+    fetch("http://ec2-54-205-245-154.compute-1.amazonaws.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

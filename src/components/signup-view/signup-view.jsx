@@ -18,7 +18,7 @@ export const SignupView = () => {
       email: email,
       birthday: birthday,
     };
-    fetch("https://women-composers-api.onrender.com/users", {
+    fetch("http://ec2-54-205-245-154.compute-1.amazonaws.com/users", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
