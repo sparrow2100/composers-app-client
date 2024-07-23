@@ -1,5 +1,6 @@
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -76,11 +77,18 @@ export const GalleryView = ({}) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>Upload an image</label>
-        <input type="file" onChange={handleFileChange} />
-        <input type="submit" value="submit" />
-      </form>
+      <Form onSubmit={handleSubmit} style={{width: "70%", backgroundColor: "white", borderRadius: "10px", padding: "25px", marginTop: "20px", marginBottom: "20px"}}>
+        <Form.Group controlId="imageUpload">
+          <Form.Label>Upload an Image</Form.Label>
+          <Form.Control
+            type="file"
+            onChange={handleFileChange}
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit" style={{ marginTop: "20px" }}>
+          Submit
+        </Button>
+      </Form>
       <div style={{display: 'flex', gap: '16px', alignItems: 'flex-end', marginTop: '24px', marginBottom: '24px'}}>
         {images.map((image, index) => (
           <div key={image.key} md={6} style={{ fontSize: "20px" }}>
