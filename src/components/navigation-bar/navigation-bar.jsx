@@ -30,6 +30,7 @@ export const NavigationBar = ({ user, onLoggedOut, setSearch }) => {
                 <Nav.Link as={Link} to="/user">
                   Profile
                 </Nav.Link>
+                <Nav.Link as={Link} to="/images">Gallery</Nav.Link>
                 <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
               </Nav>
               <Nav style={{ marginLeft: "60%" }}>
