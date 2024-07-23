@@ -89,7 +89,7 @@ export const GalleryView = ({}) => {
           Submit
         </Button>
       </Form>
-      <div style={{display: 'flex', gap: '16px', alignItems: 'flex-end', marginTop: '24px', marginBottom: '24px'}}>
+      <div style={{display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-end', marginTop: '24px', marginBottom: '24px'}}>
         {images.map((image, index) => (
           <div key={image.key} md={6} style={{ fontSize: "20px" }}>
             <div>
