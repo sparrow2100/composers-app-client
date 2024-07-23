@@ -1,13 +1,18 @@
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const GalleryView = ({}) => {
   const [images, setImages] = useState([]);
+  const [imagesUploadedCount, setImagesUploadedCount] = useState(0);
 
   //set file to current file
   const [file, setFile] = useState(null);
+
+  useEffect(() => {
+    displayImages();
+  }, [imagesUploadedCount])
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -38,19 +43,32 @@ export const GalleryView = ({}) => {
     } catch (error) {
       console.error("Error uploading the file:", error);
     }
+
+    setTimeout(() => setImagesUploadedCount((current) => current + 1), 2000);
   };
 
-  const displayImages = async (event) => {
+  const displayImages = async () => {
     try {
-      const res = await fetch(
+      const response = await fetch(
         "http://cfj18-api-loadbalancer-1063295764.us-east-1.elb.amazonaws.com/images",
         {
           method: "GET",
         }
       );
       const data = await response.json();
-      setImages(data);
-      console.log(images);
+      if (!Array.isArray(data.Contents)) {
+        alert("Error while loading images");
+        return;
+      }
+
+      const images = data.Contents
+      .filter(content => content.Key.startsWith('resized-images/') && !content.Key.endsWith('/'))
+      .map(content => ({
+        key: content.Key,
+        originalImageUrl: `http://cfj18-api-loadbalancer-1063295764.us-east-1.elb.amazonaws.com/images/${content.Key.replace('resized-images/', 'original-images/')}`,
+        url: `http://cfj18-api-loadbalancer-1063295764.us-east-1.elb.amazonaws.com/images/${content.Key}`
+      }))
+      setImages(images);
     } catch (error) {
       console.error("Error retrieving images:", error);
     }
@@ -63,12 +81,14 @@ export const GalleryView = ({}) => {
         <input type="file" onChange={handleFileChange} />
         <input type="submit" value="submit" />
       </form>
-      <Button onClick={displayImages}>Display Images</Button>
       <div>
         {images.map((image, index) => (
-          <Col md={6} style={{ fontSize: "20px", marginTop: "20px" }}>
+          <Col key={image.key} md={6} style={{ fontSize: "20px", marginTop: "20px" }}>
             <div>
-              <img src={image.url} style={{ width: "100%" }} />
+              <img src={image.url} />
+              <div>
+                <a href={image.originalImageUrl}>See original</a>
+              </div>
             </div>
           </Col>
         ))}
