@@ -30,7 +30,11 @@ export const LoginView = ({ onLoggedIn }) => {
           localStorage.setItem("token", data.token);
           onLoggedIn(data.user, data.token);
         } else {
-          alert("no such user");
+          if (data?.message) {
+            alert(data.message);
+          } else {
+            alert("Error while signing in");
+          }
         }
       })
       .catch((error) => {
