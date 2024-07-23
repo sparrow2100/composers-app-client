@@ -22,9 +22,7 @@ export const GalleryView = ({}) => {
     }
 
     const formData = new FormData();
-    formData.append("file", file);
-
-    filesList.push(file);
+    formData.append("image", file);
 
     try {
       const response = await fetch(
