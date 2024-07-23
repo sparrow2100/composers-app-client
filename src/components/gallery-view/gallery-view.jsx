@@ -81,16 +81,16 @@ export const GalleryView = ({}) => {
         <input type="file" onChange={handleFileChange} />
         <input type="submit" value="submit" />
       </form>
-      <div>
+      <div style={{display: 'flex', gap: '16px', alignItems: 'flex-end', marginTop: '24px', marginBottom: '24px'}}>
         {images.map((image, index) => (
-          <Col key={image.key} md={6} style={{ fontSize: "20px", marginTop: "20px" }}>
+          <div key={image.key} md={6} style={{ fontSize: "20px" }}>
             <div>
               <img src={image.url} />
               <div>
                 <a href={image.originalImageUrl}>See original</a>
               </div>
             </div>
-          </Col>
+          </div>
         ))}
       </div>
       <Col>
