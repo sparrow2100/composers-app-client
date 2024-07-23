@@ -6,12 +6,14 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
+import { GalleryView } from "../gallery-view/gallery-view";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import { GalleryView } from "../gallery-view/gallery-view";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -177,6 +179,19 @@ export const MainView = () => {
                     token={token}
                     composers={composers}
                   />
+                </>
+              )
+            }
+          />
+          {/* aws s3 sdk section */}
+          <Route
+            path="/images"
+            element={
+              !user ? (
+                <Navigate to="/login" />
+              ) : (
+                <>
+                  <GalleryView />
                 </>
               )
             }
