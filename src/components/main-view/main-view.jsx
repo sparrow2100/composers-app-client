@@ -34,7 +34,7 @@ export const MainView = () => {
       return;
     }
     fetch(
-      "http://careerfoundryloadbalancer-1539903482.us-east-1.elb.amazonaws.com/composers",
+      "http://cfj18-api-loadbalancer-1063295764.us-east-1.elb.amazonaws.com/composers",
       {
         headers: { Authorization: `Bearer ${token}` },
       }

@@ -39,7 +39,7 @@ export const ProfileView = ({ user, token, composers, setUser }) => {
     };
 
     fetch(
-      `http://careerfoundryloadbalancer-1539903482.us-east-1.elb.amazonaws.com/users/${user.username}`,
+      `http://cfj18-api-loadbalancer-1063295764.us-east-1.elb.amazonaws.com/users/${user.username}`,
       {
         method: "PUT",
         body: JSON.stringify(data),
@@ -64,7 +64,7 @@ export const ProfileView = ({ user, token, composers, setUser }) => {
   const deleteUser = () => {
     alert("click registered");
     fetch(
-      `http://careerfoundryloadbalancer-1539903482.us-east-1.elb.amazonaws.com/users/${user.username}`,
+      `http://cfj18-api-loadbalancer-1063295764.us-east-1.elb.amazonaws.com/users/${user.username}`,
       {
         method: "DELETE",
         headers: {

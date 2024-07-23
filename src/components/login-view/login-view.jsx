@@ -13,7 +13,7 @@ export const LoginView = ({ onLoggedIn }) => {
       password: password,
     };
     fetch(
-      "http://careerfoundryloadbalancer-1539903482.us-east-1.elb.amazonaws.com/login",
+      "http://cfj18-api-loadbalancer-1063295764.us-east-1.elb.amazonaws.com/login",
       {
         method: "POST",
         headers: {

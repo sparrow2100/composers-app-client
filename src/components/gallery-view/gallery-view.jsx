@@ -28,7 +28,7 @@ export const GalleryView = ({}) => {
 
     try {
       const response = await fetch(
-        "http://careerfoundryloadbalancer-1539903482.us-east-1.elb.amazonaws.com/images",
+        "http://cfj18-api-loadbalancer-1063295764.us-east-1.elb.amazonaws.com/images",
         {
           method: "POST",
           body: formData,
@@ -45,7 +45,7 @@ export const GalleryView = ({}) => {
   const displayImages = async (event) => {
     try {
       const res = await fetch(
-        "http://careerfoundryloadbalancer-1539903482.us-east-1.elb.amazonaws.com/images",
+        "http://cfj18-api-loadbalancer-1063295764.us-east-1.elb.amazonaws.com/images",
         {
           method: "GET",
         }
